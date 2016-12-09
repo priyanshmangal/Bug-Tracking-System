@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+		<package name="default" extends="struts-default">
+			
+			<action name="register" class="com.hcl.Register">
+				<result name="input">/register.jsp</result>
+				<result name="success">/reg_comp.jsp</result>
+				<result name="error">/register.jsp</result>
+			</action>
+			
+			<action name="login" class="com.hcl.SignIn">
+				<result name="input">/Login.jsp</result>
+				<result name="success" type="redirect">ProjectDetails</result>
+				<result name="login" type="redirect">EmpProjectDetails</result>
+				<result name="error">/loginfail.jsp</result>
+			</action>
+			
+			<action name="ProjectDetails" class="com.hcl.ProjectDetails">
+				<result name="success">/details.jsp</result>
+			</action>
+			
+			<action name="Unassign" class="com.hcl.Unassign">
+				<result name="success" type="redirect">ProjectDetails</result>
+			</action>
+			
+			<action name="EmpProjectDetails" class="com.hcl.EmpProjectDetails">
+				<result name="success">/emp.jsp</result>
+			</action>
+			
+			<action name="create_project" class="com.hcl.CreateProject">
+				<result name="success" type="redirect">ProjectDetails</result>
+				<result name="error">/create.jsp</result>
+			</action>
+			
+			<action name="assign" class="com.hcl.Assign">
+				<result name="success">assign.jsp</result>
+			</action>
+			
+			<action name="bug" class="com.hcl.Bug">
+				<result name="success">bug.jsp</result>
+			</action>
+			
+			<action name="EmployeeDetail" class="com.hcl.EmployeeDetail">
+				<result name="success">emp_detail.jsp</result>
+			</action>
+			
+			<action name="Profile" class="com.hcl.Profile">
+				<result name="success">profile.jsp</result>
+			</action>
+			
+			<action name="UpdateProfile" class="com.hcl.UpdateProfile">
+				<result name="input">/profile.jsp</result>
+				<result name="success" type="redirectAction">
+					<param name="actionName">Profile</param>
+        			<param name="msg">${message}</param>
+        		</result>
+				<result name="error" type="redirect">Profile</result>
+			</action>
+			
+			<action name="ChangePassword" class="com.hcl.ChangePassword">
+				<result name="input">/change_pswd.jsp</result>
+				<result name="success" type="redirectAction">
+					<param name="actionName">Profile</param>
+        			<param name="msg">${message}</param>
+        		</result>
+				<result name="error" type="redirect">Profile</result>
+			</action>
+			
+			<action name="BugEmp" class="com.hcl.BugEmp">
+				<result name="success">bug_emp.jsp</result>
+			</action>
+		</package>
+		
+		<package name="table" extends="struts-default">
+		
+			<action name="assign_project" class="com.hcl.AssignProject">
+			<result name="success" type="redirect">ProjectDetails</result>
+			<result name="error">/assign.jsp</result>
+			</action>
+			
+			<action name="bug_insert" class="com.hcl.BugInsert">
+			<result name="success" type="redirectAction">
+				<param name="actionName">bugDetail</param>
+        		<param name="id">${project}</param>
+        	</result>	
+			<result name="error" type="redirectAction">
+				<param name="actionName">bugDetail</param>
+        		<param name="id">${project}</param>
+        	</result>
+			</action>
+			
+			<action name="bugDetail" class="com.hcl.BugDetail">
+			<result name="success">/bug_detail.jsp</result>
+			<result name="login">/bug_detail_emp.jsp</result>
+			<result name="error">/Login.jsp</result>
+			</action>
+			
+			
+			<action name="update" class="com.hcl.update">
+			<result name="success" type="redirectAction">
+				<param name="actionName">bugDetail</param>
+        		<param name="id">${project}</param>
+        	</result>
+        	</action>
+		</package>
+		
+		
+		
+</struts>
